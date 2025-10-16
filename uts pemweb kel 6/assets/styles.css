@@ -1,0 +1,810 @@
+/* 
+  Desain terinspirasi mockup studio gim:
+  - Latar gradien ungu gelap
+  - Panel es-biru dengan radius besar
+  - Tombol ungu pastel, aksen aqua
+  - Grid/dashed pattern dekoratif
+*/
+
+/* Reset ringkas & aksesibilitas */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden; /* Hilangkan scrollbar horizontal global agar tidak muncul penggeser */
+}
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans",
+    "Liberation Sans", sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: radial-gradient(1100px 700px at -10% -20%, #1e40af1a 0%, transparent 60%),
+    radial-gradient(900px 560px at 115% 0%, #3b82f61a 0%, transparent 60%),
+    radial-gradient(1200px 780px at 50% 115%, #0ea5e91a 0%, transparent 60%), var(--bg);
+  /* grid sangat halus */
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(1100px 700px at -10% -20%, #1e40af1a 0%, transparent 60%),
+    radial-gradient(900px 560px at 115% 0%, #3b82f61a 0%, transparent 60%),
+    radial-gradient(1200px 780px at 50% 115%, #0ea5e91a 0%, transparent 60%), linear-gradient(180deg, #0a1224, #0a1224);
+  background-size: 44px 44px, 44px 44px, auto, auto, auto, auto;
+  position: relative;
+  overflow-x: hidden; /* Hilangkan scrollbar horizontal global agar tidak muncul penggeser */
+}
+/* Glow mengikuti kursor (di-update oleh JS) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -15%;
+  pointer-events: none;
+  filter: blur(30px) saturate(120%);
+  background: radial-gradient(300px 240px at var(--mx, -20%) var(--my, -20%), #64e1ff22, transparent 60%),
+    radial-gradient(
+      420px 360px at calc((var(--mx, -20%)) + 8%) calc((var(--my, -20%)) + 6%),
+      #3b82f61a,
+      transparent 65%
+    );
+  z-index: 0;
+}
+
+/* Palet & token */
+:root {
+  --bg: #0a1224; /* lebih kebiruan */
+  --bg-2: #0c1a34;
+  --surface: #eaf3fb;
+  --surface-2: #f4f7fb;
+  --card: #0f1a3a;
+  --text: #e7eaf6;
+  --muted: #a9b0d2;
+  --primary: #3b82f6; /* biru */
+  --primary-700: #1e5fe2;
+  --accent: #64e1ff; /* cyan terang */
+  --accent-700: #1fb6e0;
+  --shadow: 0 10px 30px rgba(8, 16, 40, 0.35), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius: 12px;
+  --radius-sm: 10px;
+  --container: 1200px;
+}
+
+.container {
+  width: min(100% - 2rem, var(--container));
+  margin-inline: auto;
+}
+
+/* Link lewati */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 9999;
+  background: var(--accent);
+  color: #051026;
+  padding: .5rem .75rem;
+  border-radius: 8px;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(20, 24, 60, 0.5);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.site-header .container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+.site-title {
+  margin: 0;
+  font-size: clamp(1.25rem, 1vw + 1rem, 1.75rem);
+  letter-spacing: .5px;
+  position: relative;
+}
+.site-title::after {
+  content: "";
+  display: block;
+  width: clamp(72px, 8vw, 140px);
+  height: 4px;
+  margin-top: .4rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--primary));
+  opacity: 0.9;
+}
+.site-subtitle {
+  margin: .25rem 0 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.site-nav ul {
+  display: flex;
+  gap: .5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.site-nav a {
+  display: inline-block;
+  padding: .55rem .9rem;
+  border-radius: 999px;
+  color: var(--text);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.site-nav a:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+}
+.site-nav .is-active {
+  background: linear-gradient(#ffffff, #f3f8ff) padding-box, linear-gradient(180deg, var(--accent), var(--primary))
+    border-box;
+  border: 2px solid transparent;
+  color: #0b1130;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.22);
+}
+
+/* Toggle nav (mobile) */
+.nav-toggle {
+  display: none;
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #ffffff0a;
+  color: var(--text);
+}
+.nav-toggle__bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+@media (max-width: 900px) {
+  .site-header .container {
+    grid-template-columns: 1fr auto;
+    grid-auto-rows: auto;
+  }
+  .site-subtitle {
+    grid-column: 1 / -1;
+  }
+  .nav-toggle {
+    display: inline-block;
+  }
+  .site-nav {
+    display: none;
+  }
+  .site-nav.is-open {
+    display: block;
+    grid-column: 1 / -1;
+  }
+  .site-nav ul {
+    flex-wrap: wrap;
+  }
+}
+
+/* Hero */
+.hero {
+  padding: clamp(2rem, 4vw + 1rem, 5rem) 0;
+}
+.hero__inner {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1.15fr; /* perbesar kolom kanan agar kartu seimbang dengan judul kiri */
+  align-items: center;
+}
+.hero__card {
+  background: linear-gradient(180deg, #ffffff, #ffffff) padding-box,
+    linear-gradient(180deg, var(--accent), var(--primary)) border-box;
+  border: 2px solid transparent;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  position: relative;
+  min-height: clamp(260px, 36vw, 420px); /* tambah tinggi minimum responsif agar terasa lebih besar */
+}
+.hero__card img {
+  display: block;
+  width: 100%;
+  height: clamp(140px, 20vw, 220px); /* beri tinggi responsif dengan cropping rapi */
+  object-fit: cover;
+}
+.hero__card .legend {
+  padding: 1.2rem 1.5rem; /* beri ruang teks legend sedikit lebih lega agar proporsional */
+}
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tombol */
+.btn {
+  --btn-bg: var(--surface);
+  --btn-fg: #0f1235;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .75rem 1rem;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background .2s;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+.btn--primary {
+  --btn-bg: linear-gradient(180deg, var(--accent), var(--primary));
+  --btn-fg: #0c1030;
+  color: #0c1030;
+  font-weight: 600;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+.btn--primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.5) 45%, transparent 60%);
+  transform: translateX(-120%);
+  transition: transform .6s ease;
+}
+.btn--primary:hover::after {
+  transform: translateX(120%);
+}
+.btn--ghost {
+  --btn-bg: #ffffff10;
+  --btn-fg: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Seksi fitur/konten */
+.section-head h3 {
+  margin: 0 0 .25rem;
+  font-size: 1.4rem;
+}
+.section-head .muted {
+  color: var(--muted);
+  margin: 0;
+}
+.muted {
+  color: var(--muted);
+}
+
+.features {
+  padding: 2.5rem 0 3.5rem;
+}
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+.grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+/* latar container kartu seperti contoh: gradient lembut + padding + radius */
+.grid--cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* tetap responsif, override jika perlu */
+  gap: 1.25rem;
+  padding: clamp(0.75rem, 1vw + 0.5rem, 1.25rem);
+  border-radius: 28px;
+  background: linear-gradient(135deg, #e1f0ff 0%, #d6e6ff 50%, #d0f4ff 100%);
+  border: 1px solid rgba(33, 96, 173, 0.1);
+}
+@media (max-width: 1000px) {
+  .grid--cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .grid--cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Kartu film yang dirender JS */
+.film {
+  background: #ffffff;
+  color: #101223;
+  border: 1px solid #e8eaf2;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(20, 22, 50, 0.12);
+  overflow: hidden;
+  position: relative;
+  transform: translateZ(0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+}
+.film:hover {
+  transform: translateY(-4px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  box-shadow: 0 10px 24px rgba(20, 22, 50, 0.18);
+}
+
+/* area gambar di atas kartu */
+.film__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: radial-gradient(220px 160px at 85% 75%, #bcd5ff 0%, transparent 60%),
+    radial-gradient(160px 120px at 15% 25%, #9be1ff 0%, transparent 65%), linear-gradient(135deg, #cfe4ff, #f2f7ff);
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid #eef0f6;
+}
+
+/* gambar poster agar memenuhi area */
+.film__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* badge pil di pojok kanan atas seperti contoh */
+.film__pill {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(180deg, #6aa8ff, #2f7ae5);
+  padding: 4px 10px;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(47, 122, 229, 0.35);
+  border: 1px solid #ffffff44;
+}
+
+/* isi kartu */
+.film__body {
+  padding: 0.9rem 1rem 1rem;
+}
+.film__heading {
+  margin: 0 0 .25rem;
+  line-height: 1.25;
+}
+.film__kicker {
+  display: inline-block;
+  font-size: .9rem;
+  color: #6b6f85;
+  margin-right: .35rem;
+}
+.film__title {
+  display: inline;
+  font-weight: 800;
+  color: #151831;
+}
+.film__excerpt {
+  margin: .35rem 0 .75rem;
+  color: #727798;
+  font-size: .95rem;
+}
+
+/* footer kartu: rating kiri, tombol kanan */
+.film__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+}
+.film__price {
+  font-weight: 800;
+  color: #151831;
+}
+
+/* tombol di dalam kartu sedikit diperkecil agar serasi */
+.film .btn {
+  padding: .55rem .85rem;
+  box-shadow: none;
+}
+.film .btn.btn--primary {
+  border-radius: 12px;
+}
+
+/* Kartu film yang dirender JS */
+/* ... existing code here ... */
+
+/* Modal */
+.modal {
+  /* hilangkan border/outline default dialog yang terlihat hitam pada screenshot */
+  border: 0; /* remove UA border */
+  outline: none; /* remove outline */
+  padding: 0; /* biar konten mengatur spacing sendiri */
+  background: transparent;
+  width: min(920px, calc(100vw - 2rem));
+  margin: auto; /* pusatkan oleh UA */
+  overflow: hidden; /* Hindari overflow di dalam dialog yang memicu penggeser */
+}
+
+/* Backdrop lebih halus bernuansa biru */
+.modal::backdrop {
+  background: radial-gradient(900px 500px at 50% 15%, rgba(53, 132, 255, 0.28), transparent 65%), rgba(5, 10, 26, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+/* Konten modal dengan sudut bulat/squircle dan aksen biru */
+.modal__content {
+  position: relative;
+  border-radius: var(--radius-lg); /* ~18px: tidak terlalu bulat, tidak lancip */
+  background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+  border: 1px solid rgba(47, 122, 229, 0.22);
+  box-shadow: 0 16px 40px rgba(20, 40, 80, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.6) inset; /* inner highlight */
+  overflow: clip; /* jaga isi mengikuti radius */
+  padding: clamp(16px, 2vw, 24px); /* jarak kanan-kiri-atas-bawah yang nyaman */
+  padding-right: calc(clamp(16px, 2vw, 24px) + 28px); /* tambahkan ruang ekstra di kanan agar judul tidak tertutup tombol X */
+  -webkit-mask: none; /* hilangkan squircle yang terlalu melengkung */
+  mask: none; /* agar bentuk mengikuti border-radius di atas */
+}
+
+/* Bentuk squircle untuk browser yang mendukung mask */
+@supports (mask: radial-gradient(#000, transparent)) or (-webkit-mask: radial-gradient(#000, transparent)) {
+  .modal__content {
+    -webkit-mask: radial-gradient(130% 130% at 0% 0%, #000 98%, transparent 100%) top left,
+      radial-gradient(130% 130% at 100% 0%, #000 98%, transparent 100%) top right,
+      radial-gradient(130% 130% at 100% 100%, #000 98%, transparent 100%) bottom right,
+      radial-gradient(130% 130% at 0% 100%, #000 98%, transparent 100%) bottom left;
+    -webkit-mask-size: 51% 51%;
+    -webkit-mask-repeat: no-repeat;
+
+    mask: radial-gradient(130% 130% at 0% 0%, #000 98%, transparent 100%) top left,
+      radial-gradient(130% 130% at 100% 0%, #000 98%, transparent 100%) top right,
+      radial-gradient(130% 130% at 100% 100%, #000 98%, transparent 100%) bottom right,
+      radial-gradient(130% 130% at 0% 100%, #000 98%, transparent 100%) bottom left;
+    mask-size: 51% 51%;
+    mask-repeat: no-repeat;
+  }
+}
+
+/* Tombol tutup dibulatkan */
+.modal__close {
+  position: absolute;
+  top: 12px;
+  left: auto;
+  right: 12px; /* Pindahkan tombol tutup ke kanan-atas dan jangan menutupi teks */
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px; /* moderat agar selaras dengan panel */
+  border: 1px solid rgba(47, 122, 229, 0.35);
+  background: #e6efff; /* lebih terang supaya tidak mengganggu teks */
+  color: #1e3a8a;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .2s ease;
+  z-index: 2; /* pastikan di atas konten */
+}
+.modal__close:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(30, 58, 138, 0.28);
+}
+
+/* pastikan tidak ada pseudo-element yang memunculkan 'bayangan' di tengah */
+.modal__content::before,
+.modal__content::after {
+  content: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 3rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(16, 18, 53, 0.6);
+}
+
+/* Util */
+.text-balance {
+  text-wrap: balance;
+}
+.prose p {
+  color: var(--text);
+}
+
+/* Efek tilt 3D (dikendalikan JS melalui --rx/--ry) */
+.card,
+.form,
+.hero__card,
+.modal__content,
+.film {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  will-change: transform;
+  transition: transform .12s ease, box-shadow .2s ease;
+}
+
+.modal__content h1,
+.modal__content h2,
+.modal__content h3 {
+  margin: 0 0 .6rem;
+  line-height: 1.25;
+}
+
+.modal__content p {
+  margin: .75rem 0 0;
+  line-height: 1.65;
+}
+
+/* Toolbar filter */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 1rem 0 1.25rem;
+  padding: .6rem;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04)) padding-box,
+    linear-gradient(180deg, #6ee7ff33, #3b82f633) border-box;
+  border: 1px solid transparent;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+/* Chip */
+.chip {
+  -webkit-tap-highlight-color: transparent;
+  padding: .5rem .9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06));
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: .15px;
+  transition: transform .12s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 1px 2px rgba(3, 8, 20, 0.25);
+}
+.chip:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.1));
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.5);
+}
+.chip.is-active,
+.chip[aria-pressed="true"] {
+  color: #0b1130;
+  background: linear-gradient(#ffffff, #eef5ff) padding-box, linear-gradient(180deg, var(--accent), var(--primary))
+    border-box;
+  border: 2px solid transparent;
+  box-shadow: 0 10px 22px rgba(59, 130, 246, 0.25);
+  transform: translateY(-1px);
+}
+
+/* sembunyikan chip kategori "Lainnya" di halaman review */
+.filters .chip[data-filter="Lainnya"],
+.filters .chip[data-filter="lainnya"] {
+  display: none !important;
+}
+
+/* =========================
+   Tentang (About) page boxes
+   ========================= */
+/* add glassy blue boxes for text immediately after headings on the About page */
+.prose .card > h2 + p,
+.prose .card > h3 + p,
+.prose .card > h3 + ul {
+  margin: .85rem 0 1.1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 18px; /* moderat, selaras dengan kartu review */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)) padding-box,
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--accent) 35%, transparent),
+      color-mix(in oklab, var(--primary) 35%, transparent)
+    )
+    border-box;
+  border: 1px solid transparent;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 16px rgba(2, 16, 36, 0.22);
+  backdrop-filter: blur(8px);
+}
+
+/* tighten spacing so “box” blocks read nicely in a stack */
+.prose .card > h2,
+.prose .card > h3 {
+  margin-top: 1.2rem;
+  margin-bottom: .4rem;
+}
+
+/* list styling inside boxed sections */
+.prose .card > h3 + ul {
+  padding-left: 1.25rem; /* keep bullets aligned inside the box */
+}
+.prose .card > h3 + ul li {
+  margin: .35rem 0;
+}
+
+/* Makeover untuk form 'Kirim Review' (kontak.html) tanpa mengubah HTML */
+.form {
+  /* card container */
+  width: min(100%, 860px);
+  margin: 1.75rem auto;
+}
+.form fieldset {
+  margin: 0;
+  padding: clamp(16px, 2.2vw, 22px);
+  border-radius: var(--radius-lg);
+  /* glassy panel with subtle blue border gradient */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06)) padding-box,
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--accent) 35%, transparent),
+      color-mix(in oklab, var(--primary) 35%, transparent)
+    )
+    border-box;
+  border: 1px solid transparent;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 12px 28px rgba(3, 8, 20, 0.28);
+  display: grid;
+  gap: .85rem;
+}
+.form legend {
+  display: inline-block;
+  padding: .35rem .8rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent), var(--primary));
+  color: #0b1130;
+  font-weight: 800;
+  letter-spacing: .2px;
+  box-shadow: 0 8px 22px rgba(59, 130, 246, 0.25);
+}
+
+/* Label */
+.form label {
+  font-weight: 600;
+  color: var(--text);
+  opacity: 0.9;
+  margin-top: .35rem;
+}
+
+/* Inputs, select, textarea – modern, readable on dark bg */
+.form input,
+.form select,
+.form textarea {
+  appearance: none;
+  width: 100%;
+  margin-top: .3rem;
+  padding: .75rem .9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(47, 122, 229, 0.35);
+  background: linear-gradient(180deg, #ffffff, #f5f9ff);
+  color: #0f1235;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .06s ease;
+}
+.form input::placeholder,
+.form textarea::placeholder {
+  color: #64748b;
+  opacity: 0.9;
+}
+.form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Focus, hover, invalid states */
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 30%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+.form input:hover,
+.form select:hover,
+.form textarea:hover {
+  border-color: color-mix(in oklab, var(--primary) 60%, #93c5fd);
+}
+.form input:invalid:not(:placeholder-shown),
+.form textarea:invalid:not(:placeholder-shown),
+.form select:invalid {
+  border-color: #e11d48;
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.18);
+}
+
+/* Actions */
+.form .form__actions {
+  display: flex;
+  gap: .6rem;
+  margin-top: .4rem;
+}
+.form .muted {
+  margin-top: .25rem;
+}
+
+/* Optional: elevate the whole form slightly with 3D tilt support already present */
+.form {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+}
+
+/* Responsiveness – keep single column for clarity; just add comfortable spacing on larger screens */
+@media (min-width: 900px) {
+  .form fieldset {
+    padding: 24px;
+    gap: 1rem;
+  }
+}
+
+/* ===== Modal Poster Style ===== */
+.modal-poster {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.modal-poster img.modal-img {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.modal-info {
+  text-align: left;
+}
+
+.modal-info p {
+  line-height: 1.6;
+  color: #111827;
+}
+
+.modal-info .muted {
+  color: #6b7280;
+}
+
+/* Validation / error UI */
+.error-message {
+  color: #e11d48; /* merah */
+  background: transparent;
+  font-size: .92rem;
+  margin-top: .35rem;
+  margin-bottom: 0;
+  line-height: 1.3;
+}
+
+/* Tambahan border merah pada field yang invalid */
+.is-invalid {
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.08) !important;
+  border-color: #e11d48 !important;
+  outline: none !important;
+}
+
+/* Pesan status form (umum) */
+.validation-status {
+  margin: .5rem 0;
+  font-size: .95rem;
+  color: #0f172a;
+  transition: opacity .18s ease;
+}
+.validation-status.status-error {
+  color: #7f1d1d;
+  background: #fff5f6;
+  padding: .5rem .75rem;
+  border-radius: 10px;
+  border: 1px solid rgba(225,29,72,0.12);
+}

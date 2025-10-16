@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Ulasan film The Conjuring Universe dengan palet biru yang estetis." />
+    <meta name="theme-color" content="#021024" />
+    <title>Beranda — The Conjuring Universe Reviews</title>
+    <link rel="preload" href="/assets/styles.css" as="style" />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <style>
+      .hero__card { background: transparent !important; min-height: 0 !important; padding: 0 !important; }
+      .hero__card .legend { display: none !important; }
+      .hero__card img { height: auto; display: block; } /* let image define height */
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#konten">Lewati ke konten</a>
+
+    <header class="site-header">
+      <div class="container">
+        <h1 class="site-title">The Conjuring Universe Reviews</h1>
+        <p class="site-subtitle">Ulasan, galeri, dan rangkuman film dalam jagat The Conjuring.</p>
+
+        <button class="nav-toggle" aria-controls="menu" aria-expanded="false">
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="sr-only">Buka menu</span>
+        </button>
+
+        <nav id="menu" class="site-nav" aria-label="Navigasi utama">
+          <ul>
+            <li><a class="is-active" href="/index.html" aria-current="page">Beranda</a></li>
+            <li><a href="/tentang.html">Tentang Kami</a></li>
+            <li><a href="/review.html">Review</a></li>
+            <li><a href="/kontak.html">Kontak</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="konten">
+      <section class="hero">
+        <div class="container hero__inner">
+          <div class="hero__copy">
+            <h2 class="hero__title text-balance" style="font-size: clamp(2.5rem, 3.8vw + 0.5rem, 4.25rem); line-height: 1.15;">
+              Telusuri kengerian bergaya — Semua film The Conjuring Universe dalam satu tempat.
+            </h2>
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="/review.html">Lihat Review</a>
+              <a class="btn btn--ghost" href="/tentang.html">Pelajari Kami</a>
+            </div>
+          </div>
+
+          <aside class="hero__card" aria-label="Inspirasi tata letak">
+            <img src="the conjuring univers.jpg" alt="Contoh tata letak ulasan dengan hero, rating, dan galeri" loading="lazy" />
+            <div class="legend" style="display: none;"></div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span id="year"></span> Conjuring Reviews.</p>
+      </div>
+    </footer>
+
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>

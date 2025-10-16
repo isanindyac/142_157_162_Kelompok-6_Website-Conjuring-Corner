@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Tentang situs ulasan The Conjuring Universe." />
+    <meta name="theme-color" content="#021024" />
+    <title>Tentang Kami — The Conjuring Universe Reviews</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <style>
+      /* Berlaku hanya untuk halaman ini */
+      .prose .card > h2 + p,
+      .prose .card > h3 + p,
+      .prose .card > h3 + ul {
+        /* tambah padding agar teks tidak mepet */
+        padding: 1.25rem 1.5rem;
+      }
+      /* Sedikit perbaikan indentasi bullet agar rapi di dalam kotak */
+      .prose .card > h3 + ul { padding-left: 1.4rem; }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#konten">Lewati ke konten</a>
+
+    <header class="site-header">
+      <div class="container">
+        <h1 class="site-title">Tentang Kami</h1>
+        <p class="site-subtitle">Misi, pendekatan kurasi, dan pedoman editorial kami.</p>
+
+        <button class="nav-toggle" aria-controls="menu" aria-expanded="false">
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="sr-only">Buka menu</span>
+        </button>
+
+        <nav id="menu" class="site-nav" aria-label="Navigasi utama">
+          <ul>
+            <li><a href="/index.html">Beranda</a></li>
+            <li><a class="is-active" href="/tentang.html" aria-current="page">Tentang Kami</a></li>
+            <li><a href="/review.html">Review</a></li>
+            <li><a href="/kontak.html">Kontak</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="konten" class="container prose">
+      <article class="reveal" style="max-width: 800px; margin: 2rem 0;">
+        <div class="card" style="padding: 2rem;">
+          <h2 style="margin-top: 0;">Siapa kami?</h2>
+          <p>Kami adalah sekelompok penggemar film horor yang terinspirasi oleh kisah-kisah dalam "The Conjuring Universe". Melalui situs ini, kami berbagi review jujur, pandangan pribadi, serta detail menarik dari setiap film, dengan tujuan membantu penonton menikmati dan memahami semesta horor ini lebih dalam.
+</p>
+          
+          <h3 style="margin-top: 1.5rem;">Prinsip Kami</h3>
+          <ul>
+            <li> <strong>Transparansi:</strong> Sumber rating dan ringkasan dijelaskan dengan jelas.</li>
+            <li> <strong>Konsistensi:</strong> Gaya visual biru, tipografi rapi, dan kontras yang terjaga.</li>
+            <li> <strong>Aksesibilitas:</strong> Navigasi jelas, alt text yang deskriptif, dan fokus yang terlihat.</li>
+          </ul>
+
+          <h3 style="margin-top: 1.5rem;">Struktur Konten</h3>
+          <p>Setiap entri film memiliki:</p>
+          <ul>
+            <li>Sinopsis singkat yang padat</li>
+            <li>Tahun rilis dan informasi kategori</li>
+            <li>Rating ringkas untuk referensi cepat</li>
+            <li>Tag tematik untuk navigasi mudah</li>
+          </ul>
+
+          <h3 style="margin-top: 1.5rem;">Mengapa The Conjuring Universe?</h3>
+          <p>The Conjuring Universe adalah salah satu jagat sinematik horor paling sukses. Dari kisah nyata Ed dan Lorraine Warren hingga cerita spin-off yang mengerikan, setiap film membawa pengalaman yang unik namun tetap terhubung.</p>
+          
+          <p>Kami ingin mempermudah penggemar untuk menjelajahi semua film ini dengan cara yang terorganisir dan menyenangkan secara visual.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span id="year"></span> Conjuring Reviews.</p>
+      </div>
+    </footer>
+
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>

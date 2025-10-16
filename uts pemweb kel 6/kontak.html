@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Kirim review Anda tentang film di The Conjuring Universe." />
+    <meta name="theme-color" content="#021024" />
+    <title>Kontak — The Conjuring Universe Reviews</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#konten">Lewati ke konten</a>
+
+    <header class="site-header">
+      <div class="container">
+        <h1 class="site-title">Kontak & Kirim Review</h1>
+        <p class="site-subtitle">Kirim opini singkat Anda. Kami menyimpan secara lokal (browser Anda).</p>
+
+        <button class="nav-toggle" aria-controls="menu" aria-expanded="false">
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="sr-only">Buka menu</span>
+        </button>
+
+        <nav id="menu" class="site-nav" aria-label="Navigasi utama">
+          <ul>
+            <li><a href="/index.html">Beranda</a></li>
+            <li><a href="/tentang.html">Tentang Kami</a></li>
+            <li><a href="/review.html">Review</a></li>
+            <li><a class="is-active" href="/kontak.html" aria-current="page">Kontak</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="konten" class="container">
+      <form id="review-form" class="form reveal" novalidate>
+        <fieldset>
+          <legend>Kirim Review Anda</legend>
+
+          <label for="nama">Nama <span aria-label="wajib diisi">*</span></label>
+          <input 
+            id="nama" 
+            name="nama" 
+            type="text" 
+            required 
+            minlength="2" 
+            maxlength="40" 
+            placeholder="Nama Anda"
+            autocomplete="name" />
+
+          <label for="email">Email <span aria-label="wajib diisi">*</span></label>
+          <input 
+            id="email" 
+            name="email" 
+            type="email" 
+            required 
+            placeholder="nama@contoh.com"
+            autocomplete="email" />
+
+          <label for="judul">Judul Film <span aria-label="wajib diisi">*</span></label>
+          <select id="judul" name="judul" required>
+            <option value="">Pilih film...</option>
+            <option>The Conjuring (2013)</option>
+            <option>Annabelle (2014)</option>
+            <option>The Conjuring 2 (2016)</option>
+            <option>Annabelle: Creation (2017)</option>
+            <option>The Nun (2018)</option>
+            <option>Annabelle Comes Home (2019)</option>
+            <option>The Curse of La Llorona (2019)</option>
+            <option>The Conjuring: The Devil Made Me Do It (2021)</option>
+            <option>The Nun II (2023)</option>
+          </select>
+
+          <label for="rating">Rating (0—10) <span aria-label="wajib diisi">*</span></label>
+          <input 
+            id="rating" 
+            name="rating" 
+            type="number" 
+            min="0" 
+            max="10" 
+            step="0.1" 
+            required 
+            placeholder="cth. 7.5" />
+
+          <label for="pesan">Review Singkat <span aria-label="wajib diisi">*</span></label>
+          <textarea 
+            id="pesan" 
+            name="pesan" 
+            rows="5" 
+            minlength="10" 
+            maxlength="1000" 
+            required 
+            placeholder="Apa yang Anda suka/tidak suka?"></textarea>
+
+          <div class="form__actions">
+            <button class="btn btn--primary" type="submit">Kirim Review</button>
+            <button class="btn btn--ghost" type="reset">Reset Form</button>
+          </div>
+
+          <p id="form-status" role="status" aria-live="polite" class="muted"></p>
+        </fieldset>
+      </form>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span id="year"></span> Conjuring Reviews.</p>
+      </div>
+    </footer>
+
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>

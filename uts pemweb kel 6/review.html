@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Daftar review The Conjuring Universe." />
+    <meta name="theme-color" content="#021024" />
+    <title>Review — The Conjuring Universe Reviews</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#konten">Lewati ke konten</a>
+
+    <header class="site-header">
+      <div class="container">
+        <h1 class="site-title">Review</h1>
+        <p class="site-subtitle">Filter, telusuri, dan buka detail singkat tiap film.</p>
+
+        <button class="nav-toggle" aria-controls="menu" aria-expanded="false">
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="sr-only">Buka menu</span>
+        </button>
+
+        <nav id="menu" class="site-nav" aria-label="Navigasi utama">
+          <ul>
+            <li><a href="/index.html">Beranda</a></li>
+            <li><a href="/tentang.html">Tentang Kami</a></li>
+            <li><a class="is-active" href="/review.html" aria-current="page">Review</a></li>
+            <li><a href="/kontak.html">Kontak</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="konten" class="container">
+      <section class="filters reveal" aria-label="Filter kategori" role="toolbar">
+        <button class="chip is-active" data-filter="all" aria-pressed="true">Semua</button>
+        <button class="chip" data-filter="Utama" aria-pressed="false">Utama</button>
+        <button class="chip" data-filter="Annabelle" aria-pressed="false">Annabelle</button>
+        <button class="chip" data-filter="The Nun" aria-pressed="false">The Nun</button>
+        <button class="chip" data-filter="Lainnya" aria-pressed="false">Lainnya</button>
+      </section>
+
+      <section class="grid grid--cards" id="film-grid" aria-live="polite" aria-label="Daftar film">
+        <!-- Kartu film dirender via JS -->
+      </section>
+
+      <section class="user-reviews reveal" aria-label="Review pengguna">
+        <header class="section-head">
+          <h3>Review Pengguna</h3>
+          <p class="muted">Review yang Anda kirim dari halaman Kontak akan tampil di sini.</p>
+        </header>
+        <div id="user-reviews" class="stack"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span id="year"></span> Conjuring Reviews.</p>
+      </div>
+    </footer>
+
+    <!-- Modal detail -->
+    <dialog id="detail-modal" class="modal" aria-labelledby="modal-title">
+      <article class="modal__content">
+        <button class="modal__close" aria-label="Tutup detail" data-close>&times;</button>
+        <div id="modal-body"><!-- diisi via JS --></div>
+      </article>
+    </dialog>
+
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>
